@@ -1,4 +1,3 @@
-"use server";
 import icon_01d from "./icons/01d.svg";
 import icon_01n from "./icons/01n.svg";
 import icon_02d from "./icons/02d.svg";

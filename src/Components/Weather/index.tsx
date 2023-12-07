@@ -99,7 +99,7 @@ const WeatherContanier = ({ city }: Props) => {
         <h1 className="text-xl">
           {city.state && `${city.state},`} {countryName.of(city.country)}
         </h1>
-        <h1 className={`font-light text-4xl mt-16`}>
+        <h1 className={`font-light text-[4rem] `}>
           {currentTime.h}
           <span className=" w-14">{isBlinking ? ":" : <>&nbsp;</>}</span>
           {currentTime.m} {currentTime.ampm}
