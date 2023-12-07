@@ -36,6 +36,11 @@ const GET_WEATHER = gql`
   }
 `;
 
-const queries = { GET_COORDS, GET_WEATHER };
+const GET_BG = gql`
+  query getBg {
+    getBg
+  }
+`;
+const queries = { GET_COORDS, GET_WEATHER, GET_BG };
 
 export default queries;

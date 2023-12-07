@@ -74,11 +74,12 @@ const SearchBar = ({ onChange }: Props) => {
                 <div
                   key={index}
                   onClick={() => handleClick(city)}
-                  className="bg-white/20 backdrop-blur-xl p-2 rounded-xl z-40"
+                  className="bg-white/20 backdrop-blur-xl p-2 rounded-xl z-40 cursor-pointer"
                 >
                   <h1 className="text-black text-lg font-bold">{city.name}</h1>
                   <p className=" text-slate-800">
-                    {city.state},{city.country}
+                    {city.state && `${city.state},`}
+                    {city.country}
                   </p>
                 </div>
               ))}

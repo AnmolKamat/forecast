@@ -1,5 +1,5 @@
 import { WeatherData, cityInterface } from "@/Types";
-import { icons } from "@/utils/Icons";
+import { IconKey, icons } from "@/utils/Icons";
 import { queries } from "@/utils/graphql";
 import { useQuery } from "@apollo/client";
 import Image from "next/image";
@@ -10,13 +10,12 @@ type Props = {
 };
 
 const WeatherContanier = ({ city }: Props) => {
-  const {
-    refetch: getWeather,
-    loading,
-    data: weatherData,
-  } = useQuery(queries.GET_WEATHER, {
-    variables: { lat: city.lat, lon: city.lon },
-  });
+  const { refetch: getWeather, data: weatherData } = useQuery(
+    queries.GET_WEATHER,
+    {
+      variables: { lat: city.lat, lon: city.lon },
+    }
+  );
   const [weather, setWeather] = useState<WeatherData>(weatherData);
   useEffect(() => {
     const fetchWeather = async () => {
@@ -27,7 +26,7 @@ const WeatherContanier = ({ city }: Props) => {
       setWeather(data.getWeather);
     };
     fetchWeather();
-  }, [city]);
+  }, [city, getWeather]);
   const countryName = new Intl.DisplayNames(["en"], { type: "region" });
   const getTimeAndDate = (timezoneOffset: number) => {
     const currentDate = new Date();
@@ -45,7 +44,6 @@ const WeatherContanier = ({ city }: Props) => {
     const day = shiftedDate.getDate();
     const month = shiftedDate.toLocaleString("en-us", { month: "short" });
     const year = shiftedDate.getFullYear();
-    // `${hours}:${minutes.toString().padStart(2, "0")} ${ampm}`,
     return {
       time: { h: hours, m: minutes.toString().padStart(2, "0"), ampm: ampm },
       date: `${day} ${month} ${year}`,
@@ -73,7 +71,7 @@ const WeatherContanier = ({ city }: Props) => {
           <>
             <div className="flex items-center">
               <Image
-                src={icons[`icon_${weather.weather[0].icon}`].src}
+                src={icons[`icon_${weather.weather[0].icon}` as IconKey].src}
                 alt="icons"
                 width={200}
                 height={200}

@@ -1,3 +1,5 @@
+import unsplash from "@/utils/Unspash";
+
 const getWeatherURI = "https://api.openweathermap.org/data/2.5/weather?";
 const getCoordsURI = "http://api.openweathermap.org/geo/1.0/direct?";
 const apiKey = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
@@ -30,6 +32,26 @@ const resolvers = {
         }
       } catch (error) {
         console.error(error);
+      }
+    },
+    getBg: async () => {
+      try {
+        const data: any = await unsplash.photos.getRandom({
+          collectionIds: [
+            "1319040",
+            "1705422",
+            "401922",
+            "9663343",
+            "1fmh8WnQtYg",
+            "96625331",
+            "627562",
+          ],
+          orientation: "landscape",
+        });
+        return data.response.urls.full;
+      } catch (error: any) {
+        console.log(error);
+        throw new Error(error.message);
       }
     },
   },

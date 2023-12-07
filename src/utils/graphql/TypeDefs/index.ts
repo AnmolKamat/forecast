@@ -73,6 +73,7 @@ const typeDefs = gql`
     hello: String
     getWeather(lat: String, lon: String): WeatherData
     getCoords(query: String): [City]
+    getBg: String
   }
 `;
 
